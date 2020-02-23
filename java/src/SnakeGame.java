@@ -21,7 +21,9 @@ public class SnakeGame {
 
     public int[] findTailExhaustive(){
         int length = 0;
-        int checks = 0;
+        exhaustiveChecks = 0;
+        int x = 0;
+        int y = 0;
         for(int i = 0; i < game.length; i++){
             for(int j = 0; j < game[0].length; j++){
                 if(game[i][j]){
@@ -29,11 +31,21 @@ public class SnakeGame {
                     if(neighbors(i, j) == 1){
                         if(headPosition[0] == i && headPosition[1] == j)
                         continue;
+                        else if(headPosition[0] != i || headPosition[1] != j){
+                            x = i;
+                            y = j;
+                            j = game[0].length;
+                            i = game.length;
+                        }
+                    }
+                    if(neighbors(i, j) == 2){
+                        continue;
                     }
                 }
-                checks++;
+                exhaustiveChecks++;
             }
         }
+        return new int[]{x, y, length};
     }
 
     public int neighbors(int row, int col){
