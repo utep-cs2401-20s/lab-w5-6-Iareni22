@@ -24,10 +24,10 @@ public class SnakeGame {
     //------------------------------------------------------------------------------------------------------------------
     public int[] findTailExhaustive(){
         int length = 0;
-        resetCounters();
         int x = -1;
         int y = -1;
         boolean tailFound = false;
+        resetCounters();
 
         for(int i = 0; i < game.length; i++){
             for(int j = 0; j < game[i].length; j++){
@@ -54,6 +54,10 @@ public class SnakeGame {
             }
         }
         return new int[]{x, y, length};
+    }
+
+    public int[] findTailRecursive(){
+        resetCounters();
     }
 
     private int neighbors(int row, int col){

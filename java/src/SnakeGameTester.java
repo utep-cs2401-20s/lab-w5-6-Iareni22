@@ -2,13 +2,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SnakeGameTest {
+public class SnakeGameTester {
     /*
     Test cases - findTailExhaustive
 
      */
     @Test
     public void findTailExhaustive(){
+
         boolean[][] A = {{false, false, false, true},
                 {false, false, false, true},
                 {false, false, true, true},
