@@ -10,56 +10,68 @@ public class SnakeGame {
     }
 
     public SnakeGame(boolean[][] array, int x, int y){
+        game = new boolean[array.length][array[0].length];
+        headPosition = new int[2];
+
         for(int i = 0; i < array.length; i++){
-            for(int j = 0; j < array[0].length; j++){
+            for(int j = 0; j < array[i].length; j++){
                 game[i][j] = array[i][j];
             }
         }
         headPosition[0] = x;
         headPosition[1] = y;
     }
-
+    //------------------------------------------------------------------------------------------------------------------
     public int[] findTailExhaustive(){
         int length = 0;
-        exhaustiveChecks = 0;
-        int x = 0;
-        int y = 0;
+        resetCounters();
+        int x = -1;
+        int y = -1;
+        boolean tailFound = false;
+
         for(int i = 0; i < game.length; i++){
-            for(int j = 0; j < game[0].length; j++){
+            for(int j = 0; j < game[i].length; j++){
+
+                if(!tailFound)
+                    exhaustiveChecks++;
+                else if(tailFound){}
+
                 if(game[i][j]){
                     length++;
                     if(neighbors(i, j) == 1){
                         if(headPosition[0] == i && headPosition[1] == j)
-                        continue;
-                        else if(headPosition[0] != i || headPosition[1] != j){
+                            continue;
+                        else{
                             x = i;
                             y = j;
-                            j = game[0].length;
-                            i = game.length;
+                            tailFound = true;
                         }
                     }
-                    if(neighbors(i, j) == 2){
+                    else if(neighbors(i, j) > 1){
                         continue;
                     }
                 }
-                exhaustiveChecks++;
             }
         }
         return new int[]{x, y, length};
     }
 
-    public int neighbors(int row, int col){
+    private int neighbors(int row, int col){
         int count = 0;
 
-        if(game[row - 1][col]) //checks top
+        if(row - 1 >= 0 && game[row - 1][col]) //checks top
             count++;
-        if(game[row][col - 1]) //checks left
+        if(col - 1 >= 0 && game[row][col - 1]) //checks left
             count++;
-        if(game[row][col + 1]) //checks right
+        if(col + 1 < game[0].length && game[row][col + 1]) //checks right
             count++;
-        if(game[row + 1][col]) //checks bottom
+        if(row + 1 < game.length && game[row + 1][col]) //checks bottom
             count++;
 
         return count;
+    }
+    private void resetCounters(){
+        exhaustiveChecks = 0;
+        recursiveChecks = 0;
     }
 }

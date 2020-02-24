@@ -8,16 +8,17 @@ public class SnakeGameTest {
 
      */
     @Test
-    public static void findTailExhaustive(){
+    public void findTailExhaustive(){
         boolean[][] A = {{false, false, false, true},
                 {false, false, false, true},
                 {false, false, true, true},
                 {false, false, true, false}};
         int x = 0;
         int y = 3;
+        int[] B = {3, 2, 5};
 
         SnakeGame SG = new SnakeGame(A, x, y);
-        assertArrayEquals(new int[]{3, 2, 5}, SG.findTailExhaustive());
+        assertArrayEquals(B, SG.findTailExhaustive());
 
     }
 
