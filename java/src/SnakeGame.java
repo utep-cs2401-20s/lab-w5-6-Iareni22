@@ -21,7 +21,7 @@ public class SnakeGame {
         headPosition[0] = x;
         headPosition[1] = y;
     }
-    //------------------------------------------------------------------------------------------------------------------
+    //methods-----------------------------------------------------------------------------------------------------------
     public int[] findTailExhaustive(){
         int length = 0;
         int x = -1;
@@ -55,15 +55,19 @@ public class SnakeGame {
         }
         return new int[]{x, y, length};
     }
-/*
+
     public int[] findTailRecursive(){
         resetCounters();
+        return findTailRecursive(headPosition, headPosition);
     }
 
     private int[] findTailRecursive(int[] currentPosition, int[] previousPosition){
-
+        if(neighbors(currentPosition[0], currentPosition[1]) == 1){
+            if(previousPosition == headPosition){
+            }
+        }
     }
-*/
+
     private int neighbors(int row, int col){
         int count = 0;
 
@@ -84,11 +88,11 @@ public class SnakeGame {
         recursiveChecks = 0;
     }
 
-    private static int getRecursiveChecks() {
+    public static int getRecursiveChecks() {
         return recursiveChecks;
     }
 
-    private static int getExhaustiveChecks() {
+    public static int getExhaustiveChecks() {
         return exhaustiveChecks;
     }
 }
