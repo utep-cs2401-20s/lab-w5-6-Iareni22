@@ -55,11 +55,15 @@ public class SnakeGame {
         }
         return new int[]{x, y, length};
     }
-
+/*
     public int[] findTailRecursive(){
         resetCounters();
     }
 
+    private int[] findTailRecursive(int[] currentPosition, int[] previousPosition){
+
+    }
+*/
     private int neighbors(int row, int col){
         int count = 0;
 
@@ -74,8 +78,17 @@ public class SnakeGame {
 
         return count;
     }
+
     private void resetCounters(){
         exhaustiveChecks = 0;
         recursiveChecks = 0;
+    }
+
+    private static int getRecursiveChecks() {
+        return recursiveChecks;
+    }
+
+    private static int getExhaustiveChecks() {
+        return exhaustiveChecks;
     }
 }
